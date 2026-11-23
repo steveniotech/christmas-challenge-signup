@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 290" fill="none">
+<g transform="translate(-15 36) scale(0.62)"><ellipse cx="145" cy="233" rx="91" ry="9" fill="#e9ddc4"/><rect x="125" y="185" width="40" height="43" rx="4" fill="#946149"/><path d="m145 48 85 159H60z" fill="#214b3c"/><path d="m145 42 85 159H60z" fill="#39765c" stroke="#24523f" stroke-width="2"/><circle cx="145" cy="146" r="33" fill="#a33744"/><circle cx="145" cy="142" r="33" fill="#bf4b56"/><text x="145" y="154" text-anchor="middle" font-family="Georgia,serif" font-weight="bold" font-size="24" fill="#87323c">ABC</text><text x="145" y="151" text-anchor="middle" font-family="Georgia,serif" font-weight="bold" font-size="24" fill="#fff0cf">ABC</text></g>
+<g transform="translate(157 36) scale(0.62)"><ellipse cx="145" cy="233" rx="91" ry="9" fill="#e9ddc4"/><rect x="125" y="185" width="40" height="43" rx="4" fill="#946149"/><path d="m145 48 85 159H60z" fill="#214b3c"/><path d="m145 42 85 159H60z" fill="#39765c" stroke="#24523f" stroke-width="2"/><circle cx="145" cy="146" r="33" fill="#a33744"/><circle cx="145" cy="142" r="33" fill="#bf4b56"/><text x="145" y="151" text-anchor="middle" font-family="Georgia,serif" font-weight="bold" font-size="24" fill="#762833" stroke="#de8e90" stroke-width=".5">ABC</text></g>
+<text x="32" y="31" font-family="sans-serif" font-size="15" fill="#294e40">Raised</text>
+<text x="203" y="31" font-family="sans-serif" font-size="15" fill="#294e40">Sunken</text>
+<path d="M31 219h99v19H31z" fill="#bf4b56"/><path d="M47 210h13v13H47zm24 0h13v13H71zm24 0h13v13H95z" fill="#fff0cf" stroke="#c59465" stroke-width="1"/>
+<path d="M203 219h15v8h13v-8h12v8h13v-8h12v8h13v-8h18v19h-96z" fill="#bf4b56" stroke="#88333e" stroke-width="1"/>
+<text x="38" y="260" font-family="sans-serif" font-size="14" fill="#294e40">Overlap the base</text>
+<text x="206" y="260" font-family="sans-serif" font-size="14" fill="#294e40">Keep a solid back</text>
+<text x="123" y="284" font-family="sans-serif" font-size="16" fill="#294e40">Choose one</text>
+</svg>

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 290" fill="none">
+<rect x="22" y="30" width="296" height="205" rx="15" fill="#eaf0e5" stroke="#9ab69e" stroke-width="2"/><path d="M24 199Q67 176 107 202T189 199T316 195v25q0 15-15 15H37q-15 0-15-15z" fill="#fffdf2"/>
+<g transform="translate(170 172) scale(1.4)"><rect x="-5" y="-8" width="10" height="25" rx="2" fill="#986e48"/><path d="m0-65 29 60h-58z" fill="#39765c"/><path d="m0-65 14 29h-28z" fill="#e4ede1"/></g>
+<g transform="translate(106 96) scale(0.42)"><path d="M0-37v18" stroke="#39765c" stroke-width="3"/><rect x="-10" y="-19" width="20" height="13" rx="3" fill="#39765c"/><path d="M-8-8c-32 35-22 61 8 61S40 27 8-8Z" fill="#edc775" stroke="#39765c" stroke-width="2"/><path d="M-9 7c-8 12-10 22-5 28" stroke="#fff3cd" stroke-width="4" stroke-linecap="round"/></g>
+<g transform="translate(170 92) scale(0.42)"><path d="M0-37v18" stroke="#39765c" stroke-width="3"/><rect x="-10" y="-19" width="20" height="13" rx="3" fill="#39765c"/><path d="M-8-8c-32 35-22 61 8 61S40 27 8-8Z" fill="#edc775" stroke="#39765c" stroke-width="2"/><path d="M-9 7c-8 12-10 22-5 28" stroke="#fff3cd" stroke-width="4" stroke-linecap="round"/></g>
+<g transform="translate(233 96) scale(0.42)"><path d="M0-37v18" stroke="#39765c" stroke-width="3"/><rect x="-10" y="-19" width="20" height="13" rx="3" fill="#39765c"/><path d="M-8-8c-32 35-22 61 8 61S40 27 8-8Z" fill="#edc775" stroke="#39765c" stroke-width="2"/><path d="M-9 7c-8 12-10 22-5 28" stroke="#fff3cd" stroke-width="4" stroke-linecap="round"/></g>
+<rect x="96" y="189" width="94" height="33" rx="9" fill="#b5404c"/>
+<text x="143" y="211" font-family="sans-serif" font-size="16" fill="#fff8eb" text-anchor="middle">Start</text>
+<text x="213" y="211" font-family="sans-serif" font-size="14" fill="#294e40" text-anchor="start">R: reset</text>
+<text x="37" y="271" font-family="sans-serif" font-size="16" fill="#294e40" text-anchor="start">Start. Watch. Reset. Play again.</text>
+</svg>

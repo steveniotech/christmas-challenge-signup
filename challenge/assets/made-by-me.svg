@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" fill="none">
+<path d="m80 5 16 9 18-1 10 15 17 8 2 18 10 15-6 17 2 18-14 12-7 17-18 3-15 11-17-6-18 2-12-14-17-7-3-18L7 88l6-17-2-18 14-12 7-17 18-3 15-11Z" fill="#fff8e8" stroke="#dca447" stroke-width="3"/>
+<circle cx="80" cy="78" r="51" fill="#f5ce76"/>
+<path d="m80 41 10 20 22 3-16 16 4 23-20-11-20 11 4-23-16-16 22-3z" fill="#fff8e8" stroke="#a76e22" stroke-width="2"/>
+<path d="m69 74 8 8 15-17" stroke="#2e6852" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M31 112h98v28H31z" fill="#2e6852"/>
+<text x="80" y="131" text-anchor="middle" fill="#fff8e8" font-family="sans-serif" font-size="13" font-weight="bold">Made by me</text>
+</svg>

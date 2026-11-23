@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 290" fill="none">
+<ellipse cx="167" cy="215" rx="140" ry="40" fill="#e6dcc8"/><path d="M27 201v12c0 32 280 32 280 0v-12" fill="#bdcec2"/><ellipse cx="167" cy="201" rx="140" ry="39" fill="#f7faf0" stroke="#92afa0" stroke-width="2"/><path d="M186 174c13-45 62-45 80-3v25c-16 17-60 15-80 0z" fill="#d8e6d7"/>
+<ellipse cx="129" cy="187" rx="49" ry="16" stroke="#bfa868" stroke-width="2" stroke-dasharray="5 4"/>
+<text x="38" y="70" font-family="sans-serif" font-size="18" fill="#294e40" text-anchor="start">Low snow + raised hill</text>
+<path d="M229 135L270 102" stroke="#39765c" stroke-width="2" stroke-linecap="round"/>
+<text x="232" y="91" font-family="sans-serif" font-size="15" fill="#294e40" text-anchor="start">Hill</text>
+<text x="70" y="271" font-family="sans-serif" font-size="16" fill="#294e40" text-anchor="start">Room for a story</text>
+</svg>

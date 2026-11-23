@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="22 Christmas creative challenges for ages 7–11. Make four creations in Tinkercad 3D and Scratch.">
+<meta name="application-version" content="prod-ch-v1">
+<title>Christmas Creative Challenge</title>
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=prod-ch-v1">
+<link rel="stylesheet" href="styles.css?v=prod-ch-v1">
+<style>
+  .topbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .lang-btn, .logout-btn {
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 6px 12px;
+    border-radius: 999px;
+    border: 1px solid rgba(41, 78, 64, 0.25);
+    background: #fff8e9;
+    color: #294e40;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.15s;
+  }
+  .lang-btn:hover, .logout-btn:hover {
+    background: #f2cf86;
+  }
+  .user-pill {
+    font-size: 13px;
+    font-weight: 800;
+    color: #b5404c;
+    background: #fef2f2;
+    border: 1px solid #f87171;
+    padding: 5px 12px;
+    border-radius: 999px;
+  }
+  .gate-wrap {
+    max-width: 440px;
+    margin: 36px auto 48px;
+    padding: 32px 26px;
+    background: #fffdf8;
+    border: 2px solid #e3cba7;
+    border-radius: 20px;
+    box-shadow: 0 12px 28px rgba(41, 78, 64, 0.10);
+    text-align: center;
+  }
+  .gate-wrap h1 {
+    font-size: 26px;
+    color: #294e40;
+    margin: 10px 0 8px;
+  }
+  .gate-wrap p.gate-sub {
+    font-size: 15px;
+    color: #52665d;
+    margin-bottom: 22px;
+    line-height: 1.5;
+  }
+  .gate-field {
+    text-align: left;
+    margin-bottom: 18px;
+  }
+  .gate-field label {
+    display: block;
+    font-size: 15px;
+    font-weight: 700;
+    color: #294e40;
+    margin-bottom: 8px;
+  }
+  .gate-field input {
+    width: 100%;
+    padding: 13px 15px;
+    font-size: 16px;
+    border: 2px solid #d5c3a5;
+    border-radius: 12px;
+    background: #ffffff;
+    color: #1f2937;
+    outline: none;
+  }
+  .gate-field input:focus {
+    border-color: #b5404c;
+  }
+  .gate-submit {
+    width: 100%;
+    padding: 14px;
+    font-size: 17px;
+    font-weight: 800;
+    color: #ffffff;
+    background: #b5404c;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+  }
+  .gate-submit:hover:not(:disabled) {
+    background: #9c333e;
+  }
+  .gate-submit:disabled {
+    background: #9ca3af;
+    cursor: not-allowed;
+  }
+  .gate-error {
+    display: none;
+    margin-top: 14px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    background: #fef2f2;
+    border: 1px solid #f87171;
+    color: #b91c1c;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: left;
+    line-height: 1.45;
+  }
+  .gate-register-link {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #52665d;
+  }
+  .gate-register-link a {
+    color: #b5404c;
+    font-weight: 700;
+    text-decoration: underline;
+  }
+  .countdown-banner {
+    margin: 14px 0 20px;
+    padding: 14px 18px;
+    border-radius: 14px;
+    background: #fff7e6;
+    border: 1.5px solid #e3cba7;
+    color: #294e40;
+    font-size: 15px;
+    font-weight: 700;
+  }
+</style>
+<script defer src="core.js?v=prod-ch-v1"></script>
+<script defer src="app.js?v=prod-ch-v1"></script>
+</head>
+<body>
+<a class="skip-link" href="#app" id="skip-link-el">Skip to the gifts</a>
+<header class="topbar">
+  <a class="brand" href="#home">
+    <svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true"><rect x="7" y="17" width="26" height="20" rx="4" fill="#b5404c"/><path d="M18 17h5v20h-5z" fill="#f2cf86"/><rect x="4" y="12" width="32" height="8" rx="3" fill="#ca5960"/><path d="M20 12C0 12 7-4 20 12c15-18 24 1 0 0Z" fill="none" stroke="#2e6852" stroke-width="3"/></svg>
+    <span id="brand-title">Christmas Creative Challenge</span>
+  </a>
+  <div class="topbar-actions">
+    <span id="user-badge" class="user-pill" hidden></span>
+    <button id="logout-btn" class="logout-btn" type="button" hidden>Switch ID</button>
+    <button id="lang-toggle-btn" class="lang-btn" type="button">中文</button>
+  </div>
+</header>
+<div class="modebar" id="modebar-el" hidden>
+  <div><strong id="mode-label">Event mode</strong><span id="mode-note"></span></div>
+</div>
+<main id="app" tabindex="-1"></main>
+<div id="gift-reveal" class="reveal" hidden role="status" aria-live="polite" aria-label="Opening your gift">
+<div class="reveal-scene" aria-hidden="true"><div class="gift-glow"></div><div class="reveal-lid"><i class="bow left"></i><i class="bow right"></i></div><div class="reveal-box"></div><span class="reveal-spark spark-one"></span><span class="reveal-spark spark-two"></span><span class="reveal-spark spark-three"></span></div><p id="reveal-text">A little surprise for you…</p></div>
+<footer>
+  <p id="footer-line-1">Progress stays in this browser for your Registration ID. It does not sync across devices.</p>
+  <p id="footer-line-2">“I'm done” records your own local progress. It does not equal teacher review or automatically award event points.</p>
+</footer>
+<dialog id="day-preview" aria-labelledby="preview-title"><span class="eyebrow" id="preview-date"></span><h2 id="preview-title"></h2><p id="preview-description"></p><p class="notice" id="preview-notice">This gift opens on its December date.</p><button id="close-preview" class="primary" type="button">Back to Gifts</button></dialog>
+<noscript>This gift calendar needs JavaScript. Please turn it on to use the calendar.</noscript>
+</body>
+</html>

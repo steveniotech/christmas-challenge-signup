@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 290" fill="none">
+<g transform="translate(0 0) scale(1)"><ellipse cx="145" cy="233" rx="91" ry="9" fill="#e9ddc4"/><rect x="125" y="185" width="40" height="43" rx="4" fill="#946149"/><path d="m145 48 85 159H60z" fill="#214b3c"/><path d="m145 42 85 159H60z" fill="#39765c" stroke="#24523f" stroke-width="2"/><circle cx="145" cy="146" r="33" fill="#a33744"/><circle cx="145" cy="142" r="33" fill="#bf4b56"/></g>
+<path d="m113 84-42-24H31" stroke="#39765c" stroke-width="2"/>
+<text x="12" y="49" font-family="sans-serif" font-size="15" fill="#294e40">Roof</text>
+<path d="m166 143 77-17h25" stroke="#a33744" stroke-width="2"/>
+<text x="246" y="114" font-family="sans-serif" font-size="15" fill="#294e40">Cylinder</text>
+<path d="m167 218 48 15" stroke="#946149" stroke-width="2"/>
+<text x="219" y="241" font-family="sans-serif" font-size="15" fill="#294e40">Box</text>
+<text x="49" y="278" font-family="sans-serif" font-size="15" fill="#294e40">3 shape types. One Christmas idea.</text>
+</svg>

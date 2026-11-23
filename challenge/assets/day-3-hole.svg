@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 290" fill="none">
+<g transform="translate(0 0) scale(1)"><ellipse cx="145" cy="233" rx="91" ry="9" fill="#e9ddc4"/><rect x="125" y="185" width="40" height="43" rx="4" fill="#946149"/><path d="m145 48 85 159H60z" fill="#214b3c"/><path d="m145 42 85 159H60z" fill="#39765c" stroke="#24523f" stroke-width="2"/><circle cx="145" cy="146" r="33" fill="#a33744"/><circle cx="145" cy="142" r="33" fill="#bf4b56"/><text x="145" y="154" text-anchor="middle" font-family="Georgia,serif" font-weight="bold" font-size="24" fill="#87323c">ABC</text><text x="145" y="151" text-anchor="middle" font-family="Georgia,serif" font-weight="bold" font-size="24" fill="#fff0cf">ABC</text><circle cx="145" cy="91" r="8" fill="#fff8eb" stroke="#224f3e" stroke-width="3"/></g>
+<circle cx="145" cy="91" r="19" stroke="#f1c766" stroke-width="2" stroke-dasharray="3 3"/><path d="m162 80 58-37h35" stroke="#39765c" stroke-width="2"/>
+<text x="224" y="63" font-family="sans-serif" font-size="15" fill="#294e40">Solid rim</text>
+<path d="M73 255h34v14H73zm51 0h34v14h-34z" fill="#39765c"/><rect x="107" y="243" width="17" height="38" fill="#8faeb7" fill-opacity=".35" stroke="#557e88" stroke-width="2" stroke-dasharray="3 3"/>
+<text x="174" y="265" font-family="sans-serif" font-size="14" fill="#294e40">All the way through</text>
+</svg>

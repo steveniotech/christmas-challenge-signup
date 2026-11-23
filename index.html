@@ -149,6 +149,22 @@
       line-height: 1.6;
       word-break: break-word;
     }
+    .enter-challenge-link {
+      display: inline-block;
+      width: 100%;
+      margin-top: 16px;
+      padding: 14px 16px;
+      font-size: 16px;
+      font-weight: 700;
+      color: #ffffff;
+      background: #15803d;
+      border-radius: 12px;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .enter-challenge-link:hover {
+      background: #166534;
+    }
     .error-box {
       display: none;
       margin-top: 16px;
@@ -193,6 +209,7 @@
     <div id="resultBox" class="result-box" role="status">
       <span id="resultCode" class="code-highlight"></span>
       <div id="resultMessage" class="result-message"></div>
+      <a id="enterChallengeBtn" class="enter-challenge-link" href="challenge/">Enter Challenge</a>
     </div>
   </div>
 
@@ -271,6 +288,13 @@
         resultMessage.textContent =
           'Registration successful! Your challenge ID is ' + codeStr +
           '. Please take a screenshot and show it when you arrive.';
+        try {
+          window.sessionStorage.setItem('christmas_challenge_prefill_id', codeStr);
+        } catch (e) {}
+        const enterBtn = document.getElementById('enterChallengeBtn');
+        if (enterBtn) {
+          enterBtn.href = 'challenge/?id=' + encodeURIComponent(codeStr);
+        }
         resultBox.style.display = 'block';
       }
 
