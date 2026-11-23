@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>圣诞挑战报名</title>
+  <title>Christmas Creative Challenge Registration</title>
   <style>
     * {
       box-sizing: border-box;
@@ -11,7 +11,7 @@
       padding: 0;
     }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
       background: linear-gradient(160deg, #b71c1c 0%, #1b5e20 100%);
       min-height: 100vh;
       display: flex;
@@ -38,12 +38,14 @@
       padding: 6px 14px;
       border-radius: 999px;
       margin-bottom: 12px;
+      letter-spacing: 0.3px;
     }
     h1 {
-      font-size: 26px;
+      font-size: 25px;
       color: #111827;
       margin-bottom: 8px;
       font-weight: 800;
+      line-height: 1.25;
     }
     .subtitle {
       font-size: 14px;
@@ -146,24 +148,24 @@
 </head>
 <body>
   <div class="card">
-    <div class="badge">CHRISTMAS CREATIVE CHALLENGE</div>
-    <h1>🎄 圣诞挑战报名</h1>
-    <p class="subtitle">填写参加者姓名，获取你的专属挑战编号</p>
+    <div class="badge">IO TECH LEARNING CENTER</div>
+    <h1>🎄 Christmas Creative Challenge</h1>
+    <p class="subtitle">Enter the participant’s name to receive a challenge ID.</p>
 
     <form id="signupForm" novalidate>
       <div class="form-group">
-        <label for="participantName">参加者姓名<span class="req">*</span></label>
+        <label for="participantName">Participant Name<span class="req">*</span></label>
         <input
           type="text"
           id="participantName"
           name="name"
-          placeholder="请输入参加者姓名"
+          placeholder="Enter participant’s name"
           maxlength="60"
           required
           autocomplete="off"
         />
       </div>
-      <button type="submit" id="submitBtn">立即报名</button>
+      <button type="submit" id="submitBtn">Register Now</button>
     </form>
 
     <div id="errorBox" class="error-box" role="alert"></div>
@@ -177,6 +179,11 @@
   <script>
     (function() {
       const GAS_EXEC_URL = 'https://script.google.com/macros/s/AKfycbxfQVAGf79pvIgcSy5_MyfU4jjsQDdTYxQaT2eQj0qHs-YBajlebQNaEuhfq14MGN5r/exec';
+      const MSG_EMPTY_NAME = 'Please enter the participant’s name.';
+      const MSG_LONG_NAME = 'Participant name must be 60 characters or fewer.';
+      const MSG_UNCONFIRMED = 'We couldn’t confirm your registration. Please check with our staff before submitting again to avoid duplicate registrations.';
+      const MSG_UNAVAILABLE = 'The registration service is currently unavailable. Please contact our staff for help.';
+
       const form = document.getElementById('signupForm');
       const nameInput = document.getElementById('participantName');
       const submitBtn = document.getElementById('submitBtn');
@@ -191,7 +198,7 @@
         isSubmitting = submitting;
         submitBtn.disabled = submitting;
         nameInput.disabled = submitting;
-        submitBtn.textContent = submitting ? '正在报名，请稍候' : '立即报名';
+        submitBtn.textContent = submitting ? 'Registering, please wait…' : 'Register Now';
       }
 
       function showError(msg) {
@@ -201,32 +208,47 @@
         errorBox.style.display = 'block';
       }
 
+      function normalizeBackendError(rawErr) {
+        const text = String(rawErr || '').trim();
+        if (!text) {
+          return MSG_UNCONFIRMED;
+        }
+        if (text.indexOf('请输入') !== -1 || /enter the participant/i.test(text)) {
+          return MSG_EMPTY_NAME;
+        }
+        if (text.indexOf('60') !== -1) {
+          return MSG_LONG_NAME;
+        }
+        if (/unavailable|offline/i.test(text)) {
+          return MSG_UNAVAILABLE;
+        }
+        return MSG_UNCONFIRMED;
+      }
+
       function showSuccess(res) {
         if (!res || !res.ok || !res.code) {
-          const detail = (res && res.error) ? ('（' + String(res.error) + '）') : '';
-          showError('暂时无法确认报名结果' + detail + '，请联系工作人员核对，避免重复报名。');
+          if (res && res.error) {
+            showError(normalizeBackendError(res.error));
+          } else {
+            showError(MSG_UNCONFIRMED);
+          }
           return;
         }
+        const codeStr = String(res.code).trim();
         isSubmitting = true;
         submitBtn.disabled = true;
         nameInput.disabled = true;
-        submitBtn.textContent = '已报名，请截图保存';
+        submitBtn.textContent = 'Registered — Save Your ID';
         errorBox.style.display = 'none';
-        resultCode.textContent = String(res.code);
-        resultMessage.textContent = res.message
-          ? String(res.message)
-          : ('报名成功！你的圣诞挑战编号是 ' + String(res.code) + '，请截图保存，到场时出示。');
+        resultCode.textContent = codeStr;
+        resultMessage.textContent =
+          'Registration successful! Your challenge ID is ' + codeStr +
+          '. Please take a screenshot and show it when you arrive.';
         resultBox.style.display = 'block';
       }
 
-      function handleFailure(err) {
-        const rawMsg = (err && err.message) ? String(err.message) : String(err || '');
-        const cleanMsg = rawMsg.replace(/^Error:\s*/i, '').trim();
-        showError(
-          cleanMsg
-            ? ('暂时无法确认报名结果（' + cleanMsg + '），请联系工作人员核对，避免重复报名。')
-            : '暂时无法确认报名结果，请联系工作人员核对，避免重复报名。'
-        );
+      function handleFailure() {
+        showError(MSG_UNCONFIRMED);
       }
 
       form.addEventListener('submit', async function(e) {
@@ -237,12 +259,12 @@
 
         const name = nameInput.value.replace(/[\r\n\t]+/g, ' ').trim();
         if (!name) {
-          showError('请输入参加者姓名。');
+          showError(MSG_EMPTY_NAME);
           nameInput.focus();
           return;
         }
         if (name.length > 60) {
-          showError('参加者姓名长度不能超过 60 个字符。');
+          showError(MSG_LONG_NAME);
           nameInput.focus();
           return;
         }
@@ -259,6 +281,11 @@
           return;
         }
 
+        if (typeof fetch !== 'function' || !GAS_EXEC_URL) {
+          showError(MSG_UNAVAILABLE);
+          return;
+        }
+
         try {
           const resp = await fetch(GAS_EXEC_URL, {
             method: 'POST',
@@ -271,7 +298,8 @@
             body: JSON.stringify({ name: name })
           });
           if (!resp.ok) {
-            throw new Error('HTTP ' + resp.status);
+            showError(MSG_UNCONFIRMED);
+            return;
           }
           const data = await resp.json();
           showSuccess(data);
