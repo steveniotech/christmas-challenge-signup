@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>圣诞创意挑战报名</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+      background: linear-gradient(160deg, #b71c1c 0%, #1b5e20 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      color: #1f2937;
+    }
+    .card {
+      position: relative;
+      background: #ffffff;
+      width: 100%;
+      max-width: 420px;
+      border-radius: 20px;
+      padding: 36px 24px 28px;
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.25);
+      text-align: center;
+    }
+    .lang-switch {
+      position: absolute;
+      top: 14px;
+      right: 16px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #374151;
+      background: #f3f4f6;
+      padding: 5px 12px;
+      border-radius: 999px;
+      text-decoration: none;
+      border: 1px solid #e5e7eb;
+      transition: background 0.2s, color 0.2s;
+    }
+    .lang-switch:hover {
+      background: #e5e7eb;
+      color: #111827;
+    }
+    .badge {
+      display: inline-block;
+      background: #fef2f2;
+      color: #dc2626;
+      font-weight: 700;
+      font-size: 13px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      margin-bottom: 12px;
+      letter-spacing: 0.3px;
+    }
+    h1 {
+      font-size: 26px;
+      color: #111827;
+      margin-bottom: 8px;
+      font-weight: 800;
+      line-height: 1.25;
+    }
+    .subtitle {
+      font-size: 14px;
+      color: #6b7280;
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+    .form-group {
+      text-align: left;
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      font-size: 15px;
+      font-weight: 600;
+      color: #374151;
+      margin-bottom: 8px;
+    }
+    label span.req {
+      color: #dc2626;
+      margin-left: 4px;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 14px 16px;
+      font-size: 16px;
+      border: 2px solid #e5e7eb;
+      border-radius: 12px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    input[type="text"]:focus {
+      border-color: #dc2626;
+    }
+    input[type="text"]:disabled {
+      background-color: #f3f4f6;
+      color: #6b7280;
+    }
+    button {
+      width: 100%;
+      padding: 15px;
+      font-size: 17px;
+      font-weight: 700;
+      color: #ffffff;
+      background: #dc2626;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+    }
+    button:hover:not(:disabled) {
+      background: #b91c1c;
+    }
+    button:active:not(:disabled) {
+      transform: scale(0.99);
+    }
+    button:disabled {
+      background: #9ca3af;
+      cursor: not-allowed;
+    }
+    .result-box {
+      display: none;
+      margin-top: 20px;
+      padding: 20px 18px;
+      border-radius: 14px;
+      background: #f0fdf4;
+      border: 2px solid #16a34a;
+      color: #14532d;
+      text-align: center;
+    }
+    .code-highlight {
+      display: block;
+      font-size: 40px;
+      font-weight: 900;
+      color: #dc2626;
+      margin: 8px 0 12px;
+      letter-spacing: 2px;
+    }
+    .result-message {
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.6;
+      word-break: break-word;
+    }
+    .error-box {
+      display: none;
+      margin-top: 16px;
+      padding: 14px;
+      border-radius: 10px;
+      background: #fef2f2;
+      border: 1px solid #f87171;
+      color: #b91c1c;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 1.5;
+      text-align: left;
+      word-break: break-word;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <a href="../" class="lang-switch" lang="en">English</a>
+    <div class="badge">IO TECH LEARNING CENTER</div>
+    <h1>🎄 圣诞创意挑战</h1>
+    <p class="subtitle">填写参加者姓名，获取你的专属挑战编号。</p>
+
+    <form id="signupForm" novalidate>
+      <div class="form-group">
+        <label for="participantName">参加者姓名<span class="req">*</span></label>
+        <input
+          type="text"
+          id="participantName"
+          name="name"
+          placeholder="请输入参加者姓名"
+          maxlength="60"
+          required
+          autocomplete="off"
+        />
+      </div>
+      <button type="submit" id="submitBtn">立即报名</button>
+    </form>
+
+    <div id="errorBox" class="error-box" role="alert"></div>
+
+    <div id="resultBox" class="result-box" role="status">
+      <span id="resultCode" class="code-highlight"></span>
+      <div id="resultMessage" class="result-message"></div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      const GAS_EXEC_URL = 'https://script.google.com/macros/s/AKfycbxfQVAGf79pvIgcSy5_MyfU4jjsQDdTYxQaT2eQj0qHs-YBajlebQNaEuhfq14MGN5r/exec';
+      const MSG_EMPTY_NAME = '请输入参加者姓名。';
+      const MSG_LONG_NAME = '参加者姓名长度不能超过 60 个字符。';
+      const MSG_UNCONFIRMED = '暂时无法确认报名结果，请联系工作人员核对，避免重复报名。';
+      const MSG_UNAVAILABLE = '当前报名服务暂不可用，请联系工作人员协助处理。';
+
+      const form = document.getElementById('signupForm');
+      const nameInput = document.getElementById('participantName');
+      const submitBtn = document.getElementById('submitBtn');
+      const resultBox = document.getElementById('resultBox');
+      const resultCode = document.getElementById('resultCode');
+      const resultMessage = document.getElementById('resultMessage');
+      const errorBox = document.getElementById('errorBox');
+
+      let isSubmitting = false;
+
+      function setSubmittingState(submitting) {
+        isSubmitting = submitting;
+        submitBtn.disabled = submitting;
+        nameInput.disabled = submitting;
+        submitBtn.textContent = submitting ? '正在报名，请稍候……' : '立即报名';
+      }
+
+      function showError(msg) {
+        setSubmittingState(false);
+        resultBox.style.display = 'none';
+        errorBox.textContent = msg;
+        errorBox.style.display = 'block';
+      }
+
+      function normalizeBackendError(rawErr) {
+        const text = String(rawErr || '').trim();
+        if (!text) {
+          return MSG_UNCONFIRMED;
+        }
+        if (text.indexOf('请输入') !== -1 || /enter the participant/i.test(text)) {
+          return MSG_EMPTY_NAME;
+        }
+        if (text.indexOf('60') !== -1) {
+          return MSG_LONG_NAME;
+        }
+        if (/unavailable|offline/i.test(text)) {
+          return MSG_UNAVAILABLE;
+        }
+        return MSG_UNCONFIRMED;
+      }
+
+      function showSuccess(res) {
+        if (!res || !res.ok || !res.code) {
+          if (res && res.error) {
+            showError(normalizeBackendError(res.error));
+          } else {
+            showError(MSG_UNCONFIRMED);
+          }
+          return;
+        }
+        const codeStr = String(res.code).trim();
+        isSubmitting = true;
+        submitBtn.disabled = true;
+        nameInput.disabled = true;
+        submitBtn.textContent = '已报名，请截图保存';
+        errorBox.style.display = 'none';
+        resultCode.textContent = codeStr;
+        resultMessage.textContent =
+          '报名成功！你的挑战编号是 ' + codeStr +
+          '。请截图保存，到场时出示。';
+        resultBox.style.display = 'block';
+      }
+
+      function handleFailure() {
+        showError(MSG_UNCONFIRMED);
+      }
+
+      form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        if (isSubmitting) {
+          return;
+        }
+
+        const name = nameInput.value.replace(/[\r\n\t]+/g, ' ').trim();
+        if (!name) {
+          showError(MSG_EMPTY_NAME);
+          nameInput.focus();
+          return;
+        }
+        if (name.length > 60) {
+          showError(MSG_LONG_NAME);
+          nameInput.focus();
+          return;
+        }
+
+        errorBox.style.display = 'none';
+        resultBox.style.display = 'none';
+        setSubmittingState(true);
+
+        if (typeof google !== 'undefined' && google.script && google.script.run) {
+          google.script.run
+            .withSuccessHandler(showSuccess)
+            .withFailureHandler(handleFailure)
+            .registerParticipant(name);
+          return;
+        }
+
+        if (typeof fetch !== 'function' || !GAS_EXEC_URL) {
+          showError(MSG_UNAVAILABLE);
+          return;
+        }
+
+        try {
+          const resp = await fetch(GAS_EXEC_URL, {
+            method: 'POST',
+            mode: 'cors',
+            credentials: 'omit',
+            redirect: 'follow',
+            headers: {
+              'Content-Type': 'text/plain;charset=utf-8'
+            },
+            body: JSON.stringify({ name: name })
+          });
+          if (!resp.ok) {
+            showError(MSG_UNCONFIRMED);
+            return;
+          }
+          const data = await resp.json();
+          showSuccess(data);
+        } catch (err) {
+          handleFailure(err);
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
