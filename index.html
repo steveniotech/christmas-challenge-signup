@@ -201,6 +201,7 @@
       const GAS_EXEC_URL = 'https://script.google.com/macros/s/AKfycbxfQVAGf79pvIgcSy5_MyfU4jjsQDdTYxQaT2eQj0qHs-YBajlebQNaEuhfq14MGN5r/exec';
       const MSG_EMPTY_NAME = 'Please enter the participant’s name.';
       const MSG_LONG_NAME = 'Participant name must be 60 characters or fewer.';
+      const MSG_FULL = 'Registration is full. Please contact our staff to join the waitlist.';
       const MSG_UNCONFIRMED = 'We couldn’t confirm your registration. Please check with our staff before submitting again to avoid duplicate registrations.';
       const MSG_UNAVAILABLE = 'The registration service is currently unavailable. Please contact our staff for help.';
 
@@ -228,10 +229,16 @@
         errorBox.style.display = 'block';
       }
 
-      function normalizeBackendError(rawErr) {
+      function normalizeBackendError(rawErr, isFull) {
+        if (isFull) {
+          return MSG_FULL;
+        }
         const text = String(rawErr || '').trim();
         if (!text) {
           return MSG_UNCONFIRMED;
+        }
+        if (/REGISTRATION_FULL|Registration is full/i.test(text)) {
+          return MSG_FULL;
         }
         if (/enter the participant/i.test(text)) {
           return MSG_EMPTY_NAME;
@@ -247,8 +254,8 @@
 
       function showSuccess(res) {
         if (!res || !res.ok || !res.code) {
-          if (res && res.error) {
-            showError(normalizeBackendError(res.error));
+          if (res && (res.full || res.error)) {
+            showError(normalizeBackendError(res.error, res.full));
           } else {
             showError(MSG_UNCONFIRMED);
           }

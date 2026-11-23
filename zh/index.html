@@ -201,6 +201,7 @@
       const GAS_EXEC_URL = 'https://script.google.com/macros/s/AKfycbxfQVAGf79pvIgcSy5_MyfU4jjsQDdTYxQaT2eQj0qHs-YBajlebQNaEuhfq14MGN5r/exec';
       const MSG_EMPTY_NAME = '请输入参加者姓名。';
       const MSG_LONG_NAME = '参加者姓名长度不能超过 60 个字符。';
+      const MSG_FULL = '报名已满，感谢关注！如需候补，请联系工作人员。';
       const MSG_UNCONFIRMED = '暂时无法确认报名结果，请联系工作人员核对，避免重复报名。';
       const MSG_UNAVAILABLE = '当前报名服务暂不可用，请联系工作人员协助处理。';
 
@@ -228,10 +229,16 @@
         errorBox.style.display = 'block';
       }
 
-      function normalizeBackendError(rawErr) {
+      function normalizeBackendError(rawErr, isFull) {
+        if (isFull) {
+          return MSG_FULL;
+        }
         const text = String(rawErr || '').trim();
         if (!text) {
           return MSG_UNCONFIRMED;
+        }
+        if (/REGISTRATION_FULL|Registration is full/i.test(text)) {
+          return MSG_FULL;
         }
         if (text.indexOf('请输入') !== -1 || /enter the participant/i.test(text)) {
           return MSG_EMPTY_NAME;
@@ -247,8 +254,8 @@
 
       function showSuccess(res) {
         if (!res || !res.ok || !res.code) {
-          if (res && res.error) {
-            showError(normalizeBackendError(res.error));
+          if (res && (res.full || res.error)) {
+            showError(normalizeBackendError(res.error, res.full));
           } else {
             showError(MSG_UNCONFIRMED);
           }
