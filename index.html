@@ -213,7 +213,7 @@
         if (!text) {
           return MSG_UNCONFIRMED;
         }
-        if (text.indexOf('请输入') !== -1 || /enter the participant/i.test(text)) {
+        if (/enter the participant/i.test(text)) {
           return MSG_EMPTY_NAME;
         }
         if (text.indexOf('60') !== -1) {
